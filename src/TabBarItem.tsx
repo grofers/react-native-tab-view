@@ -6,6 +6,7 @@ import {
   LayoutChangeEvent,
   TextStyle,
   ViewStyle,
+  Text
 } from 'react-native';
 import TouchableItem from './TouchableItem';
 import { Scene, Route, NavigationState } from './types';
@@ -155,7 +156,7 @@ export default class TabBarItem<T extends Route> extends React.Component<
 
             if (typeof labelText === 'string') {
               return (
-                <Animated.Text
+                <Text
                   style={[
                     styles.label,
                     icon ? { marginTop: 0 } : null,
@@ -164,7 +165,7 @@ export default class TabBarItem<T extends Route> extends React.Component<
                   ]}
                 >
                   {labelText}
-                </Animated.Text>
+                </Text>
               );
             }
 
@@ -172,11 +173,6 @@ export default class TabBarItem<T extends Route> extends React.Component<
           };
 
     if (renderLabel) {
-      const activeLabel = renderLabel({
-        route,
-        focused: true,
-        color: activeColor,
-      });
       const inactiveLabel = renderLabel({
         route,
         focused: false,
@@ -185,14 +181,7 @@ export default class TabBarItem<T extends Route> extends React.Component<
 
       label = (
         <View>
-          <Animated.View style={{ opacity: inactiveOpacity }}>
-            {inactiveLabel}
-          </Animated.View>
-          <Animated.View
-            style={[StyleSheet.absoluteFill, { opacity: activeOpacity }]}
-          >
-            {activeLabel}
-          </Animated.View>
+          {inactiveLabel}
         </View>
       );
     }
