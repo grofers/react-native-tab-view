@@ -12,6 +12,7 @@ class SceneComponent<
 export default function SceneMap<T extends any>(scenes: {
   [key: string]: React.ComponentType<T>;
 }) {
+  // @ts-ignore
   return ({ route, jumpTo, position }: T) => (
     <SceneComponent
       key={route.key}
